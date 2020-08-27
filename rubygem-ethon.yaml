@@ -1,0 +1,4 @@
+on_control: github
+src_repo: typhoeus/ethon
+tag_prefix: "v"
+separator: "."
