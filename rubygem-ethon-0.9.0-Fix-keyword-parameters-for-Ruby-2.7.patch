@@ -1,0 +1,12 @@
+diff -Nur a/usr/share/gems/gems/ethon-0.9.0/spec/support/localhost_server.rb b/usr/share/gems/gems/ethon-0.9.0/spec/support/localhost_server.rb
+--- a/usr/share/gems/gems/ethon-0.9.0/spec/support/localhost_server.rb	2022-02-22 18:28:21.009558853 +0800
++++ b/usr/share/gems/gems/ethon-0.9.0/spec/support/localhost_server.rb	2022-02-22 18:27:59.245191570 +0800
+@@ -43,7 +43,7 @@
+     # Use WEBrick since it's part of the ruby standard library and is available on all ruby interpreters.
+     options = { :Port => port }
+     options.merge!(:AccessLog => [], :Logger => WEBrick::BasicLog.new(StringIO.new)) unless ENV['VERBOSE_SERVER']
+-    Rack::Handler::WEBrick.run(Identify.new(@rack_app), options)
++    Rack::Handler::WEBrick.run(Identify.new(@rack_app), **options)
+   end
+ 
+   def booted?
