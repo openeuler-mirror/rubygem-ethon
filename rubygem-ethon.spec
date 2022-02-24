@@ -1,13 +1,15 @@
 %global gem_name ethon
 Name:                rubygem-%{gem_name}
 Version:             0.9.0
-Release:             1
+Release:             2
 Summary:             Libcurl wrapper
 License:             MIT
 URL:                 https://github.com/typhoeus/ethon
 Source0:             https://rubygems.org/gems/%{gem_name}-%{version}.gem
+#https://github.com/typhoeus/ethon/pull/174
+Patch0:              rubygem-ethon-0.9.0-Fix-keyword-parameters-for-Ruby-2.7.patch
 BuildRequires:       ruby(release) rubygems-devel >= 1.3.6 ruby rubygem(rspec) rubygem(ffi) => 1.3.0
-BuildRequires:       rubygem(mime-types) => 1.18 rubygem(rack) rubygem(sinatra)
+BuildRequires:       rubygem(mime-types) => 1.18 rubygem(rack) rubygem(sinatra) rubygem(webrick)
 BuildArch:           noarch
 %description
 Very lightweight libcurl wrapper.
@@ -22,6 +24,7 @@ Documentation for %{name}.
 %prep
 %setup -q -c -T
 %gem_install -n %{SOURCE0}
+%patch0 -p1
 
 %build
 
@@ -59,5 +62,8 @@ popd
 %{gem_instdir}/spec
 
 %changelog
+* Thu Feb 24 2022 liyanan <liyanan32@huawei.com> - 0.9.0-2
+- Fix keyword parameters for Ruby 2.7
+
 * Thu Aug 20 2020 xiezheng <xiezheng4@huawei.com> - 0.9.0-1
 - package init
